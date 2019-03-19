@@ -1,0 +1,12 @@
+@import "../../css/Global.scss";
+
+.content {
+	position: relative;
+
+	.loading {
+		position: absolute;
+		left: 50%;
+		margin: 100px 0;
+		transform: translateX(-50%);
+	}
+}

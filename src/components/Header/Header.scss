@@ -1,0 +1,20 @@
+@import "../../css/Global.scss";
+
+.header {
+	align-items: center;
+	background-color: $white;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+	display: flex;
+	height: 70px;
+	justify-content: center;
+	width: 100%;
+
+	&__logo {
+		font-size: 22px;
+
+		@include breakpoint(desktopMedium) {
+			font-size: 28px;
+		}
+	}
+}

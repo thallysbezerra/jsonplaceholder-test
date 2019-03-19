@@ -1,0 +1,18 @@
+// SASS files imports and global definitions
+
+@import "./normalize";
+@import "./Animations";
+@import "./Breakpoints";
+@import "./Colors";
+@import "./Fonts";
+@import "./Layout";
+
+body {
+	font: 400 16px "Bitter", sans-serif;
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+}

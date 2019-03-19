@@ -1,0 +1,65 @@
+@import "../../css/Global.scss";
+
+.button-arrow {
+	background-color: transparent;
+	border: none;
+	display: inline-block;
+	font-weight: 400;
+	letter-spacing: 5px;
+	padding: 20px 40px 20px 20px;
+	position: relative;
+	text-align: center;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&__arrow {
+		position: absolute;
+		top: 60px;
+		transform: rotate(-90deg);
+
+		&--central-bar,
+		&--bottom-bar,
+		&--top-bar {
+			height: 25px;
+			left: 29px;
+			overflow: hidden;
+			position: absolute;
+			top: 30px;
+			transition: opacity 0.4s ease-in-out;
+			width: 4px;
+
+			&:before,
+			&:after {
+				content: "";
+				display: block;
+				height: 100%;
+				left: 0;
+				margin: auto;
+				position: absolute;
+				right: 0;
+				width: 2px;
+			}
+
+			&:after {
+				animation: arrowAnimation 2s infinite
+					cubic-bezier(0.3, 0.7, 0.7, 0.3);
+				background: $red;
+			}
+		}
+
+		&--bottom-bar,
+		&--top-bar {
+			height: 15px;
+			left: 24px;
+			top: 43px;
+			transform: rotate(-45deg);
+		}
+
+		&--top-bar {
+			left: 34px;
+			transform: rotate(-135deg);
+		}
+	}
+}
