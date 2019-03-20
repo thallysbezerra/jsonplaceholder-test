@@ -153,10 +153,12 @@ export default class Content extends Component {
 							/>
 							<div className="container">
 								<Title title={secondaryPage.title} />
+
 								<LabelWithContent
 									label={secondaryPage.user}
 									content={userName}
 								/>
+
 								<ul className="posts__list">
 									{posts !== undefined &&
 										posts
