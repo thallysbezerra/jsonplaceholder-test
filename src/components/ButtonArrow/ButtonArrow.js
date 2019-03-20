@@ -9,12 +9,14 @@ const ButtonArrow = props => {
 				disabled={props.disabled}
 				onClick={props.action}
 			>
-				{props.text}{" "}
-				<span class="button-arrow__arrow">
-					<div class="button-arrow__arrow--central-bar" />
-					<div class="button-arrow__arrow--bottom-bar" />
-					<div class="button-arrow__arrow--top-bar" />
-				</span>
+				<div className="button-arrow__text">
+					{props.text}
+					<span class="button-arrow__arrow">
+						<div class="button-arrow__arrow--central-bar" />
+						<div class="button-arrow__arrow--bottom-bar" />
+						<div class="button-arrow__arrow--top-bar" />
+					</span>
+				</div>
 			</button>
 		</Fragment>
 	);

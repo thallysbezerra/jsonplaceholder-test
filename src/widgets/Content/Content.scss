@@ -1,12 +1,39 @@
 @import "../../css/Global.scss";
 
 .content {
-	position: relative;
-
 	.loading {
-		position: absolute;
+		position: fixed;
 		left: 50%;
-		margin: 100px 0;
-		transform: translateX(-50%);
+		top: 50%;
+		transform: scale(1.5) translate(-50%, -50%);
+		width: 48px;
+	}
+
+	&__title {
+		color: $red;
+	}
+
+	&__list {
+		.content--wrapper {
+			padding: 10px;
+		}
+
+		&__item {
+			background-color: $white;
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+
+			&__label {
+				color: $red;
+				font-size: 14px;
+			}
+
+			&__value {
+				margin: 5px 0 10px;
+
+				&:last-of-type {
+					margin-bottom: 0;
+				}
+			}
+		}
 	}
 }

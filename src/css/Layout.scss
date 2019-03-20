@@ -20,3 +20,20 @@
 		max-width: 1440px;
 	}
 }
+
+.grid-container {
+	display: grid;
+
+	@include breakpoint(tabletPortrait) {
+		grid-gap: 20px;
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include breakpoint(tabletLandscape) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@include breakpoint(desktopMedium) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}

@@ -7,8 +7,16 @@
 @import "./Fonts";
 @import "./Layout";
 
+html {
+	min-height: 100%;
+}
+
 body {
+	background-color: $grey-light;
 	font: 400 16px "Bitter", sans-serif;
+	height: 100%;
+	padding-bottom: 90px;
+	position: relative;
 
 	ul {
 		list-style: none;
