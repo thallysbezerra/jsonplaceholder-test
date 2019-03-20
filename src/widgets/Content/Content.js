@@ -41,9 +41,11 @@ export default class Content extends Component {
 		});
 	};
 
-	showPosts = () => {
+	showPosts = item => {
 		this.setState({
-			showPosts: true
+			showPosts: true,
+			userId: item.id,
+			userName: item.name
 		});
 		fetch("https://jsonplaceholder.typicode.com/posts")
 			.then(res => res.json())
@@ -70,7 +72,9 @@ export default class Content extends Component {
 			postsIsLoaded,
 			showPosts,
 			users,
-			posts
+			posts,
+			userId,
+			userName
 		} = this.state;
 		const primaryPage = data.primaryPage;
 		const secondaryPage = data.secondaryPage;
@@ -129,10 +133,7 @@ export default class Content extends Component {
 
 										<ButtonArrow
 											action={() => {
-												this.showPosts(
-													item,
-													primaryPage.id
-												);
+												this.showPosts(item);
 											}}
 											text="See posts"
 										/>
@@ -164,25 +165,29 @@ export default class Content extends Component {
 								</h2>
 								<ul className="posts__list">
 									{posts !== undefined &&
-										posts.map((item, index) => (
-											<li
-												className="posts__list__item"
-												key={index}
-											>
-												<small className="posts__list__item__label">
-													{secondaryPage.user}
-												</small>
-												<p className="posts__list__item__user">
-													Nome do usuário
-												</p>
-												<p className="posts__list__item__title">
-													{item.title}
-												</p>
-												<p className="posts__list__item__message">
-													{item.body}
-												</p>
-											</li>
-										))}
+										posts
+											.filter(
+												post => post.userId === userId
+											)
+											.map((item, index) => (
+												<li
+													className="posts__list__item"
+													key={index}
+												>
+													<small className="posts__list__item__label">
+														{secondaryPage.user}
+													</small>
+													<p className="posts__list__item__user">
+														{userName}
+													</p>
+													<p className="posts__list__item__title">
+														{item.title}
+													</p>
+													<p className="posts__list__item__message">
+														{item.body}
+													</p>
+												</li>
+											))}
 								</ul>
 							</div>
 						</section>
