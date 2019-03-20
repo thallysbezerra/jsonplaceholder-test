@@ -4,7 +4,9 @@ import data from "./Content.json";
 
 import ButtonArrow from "../../components/ButtonArrow/ButtonArrow";
 import closeIcon from "./img/close-icon.svg";
+import LabelWithContent from "../../components/LabelWithContent/LabelWithContent";
 import Loading from "../../components/Loading/Loading";
+import Title from "../../components/Title/Title";
 
 export default class Content extends Component {
 	constructor(props) {
@@ -39,6 +41,7 @@ export default class Content extends Component {
 		this.setState({
 			showPosts: false
 		});
+		document.body.style.overflow = "visible";
 	};
 
 	showPosts = item => {
@@ -63,6 +66,8 @@ export default class Content extends Component {
 					});
 				}
 			);
+
+		document.body.style.overflow = "hidden";
 	};
 
 	render() {
@@ -92,9 +97,7 @@ export default class Content extends Component {
 				<Fragment>
 					<section className="content">
 						<div className="container">
-							<h2 className="content__title">
-								{primaryPage.title}
-							</h2>
+							<Title title={primaryPage.title} />
 							<ul className="content__list grid-container">
 								{users.map((item, index) => (
 									<li
@@ -102,33 +105,22 @@ export default class Content extends Component {
 										key={index}
 									>
 										<div className="content--wrapper">
-											<small className="content__list__item__label">
-												{primaryPage.name}
-											</small>
-											<p className="content__list__item__value">
-												{item.name}
-											</p>
-
-											<small className="content__list__item__label">
-												{primaryPage.email}
-											</small>
-											<p className="content__list__item__value">
-												{item.email}
-											</p>
-
-											<small className="content__list__item__label">
-												{primaryPage.phone}
-											</small>
-											<p className="content__list__item__value">
-												{item.phone}
-											</p>
-
-											<small className="content__list__item__label">
-												{primaryPage.website}
-											</small>
-											<p className="content__list__item__value">
-												{item.website}
-											</p>
+											<LabelWithContent
+												label={primaryPage.name}
+												content={item.name}
+											/>
+											<LabelWithContent
+												label={primaryPage.email}
+												content={item.email}
+											/>
+											<LabelWithContent
+												label={primaryPage.phone}
+												content={item.phone}
+											/>
+											<LabelWithContent
+												label={primaryPage.website}
+												content={item.website}
+											/>
 										</div>
 
 										<ButtonArrow
@@ -160,9 +152,11 @@ export default class Content extends Component {
 								src={closeIcon}
 							/>
 							<div className="container">
-								<h2 className="posts__title">
-									{secondaryPage.title}
-								</h2>
+								<Title title={secondaryPage.title} />
+								<LabelWithContent
+									label={secondaryPage.user}
+									content={userName}
+								/>
 								<ul className="posts__list">
 									{posts !== undefined &&
 										posts
@@ -174,12 +168,6 @@ export default class Content extends Component {
 													className="posts__list__item"
 													key={index}
 												>
-													<small className="posts__list__item__label">
-														{secondaryPage.user}
-													</small>
-													<p className="posts__list__item__user">
-														{userName}
-													</p>
 													<p className="posts__list__item__title">
 														{item.title}
 													</p>
