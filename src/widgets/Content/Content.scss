@@ -37,3 +37,29 @@
 		}
 	}
 }
+
+.posts {
+	background-color: $white;
+	height: 100vh;
+	left: 100vw;
+	position: fixed;
+	top: 0;
+	transition: 0.5s left ease-in-out;
+	width: 100vw;
+
+	&.show {
+		left: 0;
+	}
+
+	&__title {
+		color: $red;
+	}
+
+	&__close {
+		color: $red;
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		width: 30px;
+	}
+}

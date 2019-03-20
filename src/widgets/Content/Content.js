@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./Content.scss";
-// import data from "./Content.json";
-import ButtonArrow from "../../components/ButtonArrow/ButtonArrow";
+import data from "./Content.json";
 
+import ButtonArrow from "../../components/ButtonArrow/ButtonArrow";
+import closeIcon from "./img/close-icon.svg";
 import Loading from "../../components/Loading/Loading";
 
 export default class Content extends Component {
@@ -10,7 +11,8 @@ export default class Content extends Component {
 		super(props);
 		this.state = {
 			error: null,
-			isLoaded: false
+			isLoaded: false,
+			showPosts: false
 		};
 	}
 
@@ -34,8 +36,23 @@ export default class Content extends Component {
 			);
 	}
 
+	closePosts = () => {
+		this.setState({
+			showPosts: false
+		});
+	};
+
+	showPosts = () => {
+		this.setState({
+			showPosts: true
+		});
+	};
+
 	render() {
-		const { error, isLoaded, api, users } = this.state;
+		const { error, isLoaded, showPosts, users } = this.state;
+		const primaryPage = data.primaryPage;
+		const secondaryPage = data.secondaryPage;
+
 		if (error) {
 			return <div>Error: {error.message}</div>;
 		} else if (!isLoaded) {
@@ -45,50 +62,82 @@ export default class Content extends Component {
 				</section>
 			);
 		} else {
-			console.log(api);
 			return (
-				<section className="content">
-					<div className="container">
-						<h2 className="content__title">Users</h2>
-						<ul className="content__list grid-container">
-							{users.map((item, index) => (
-								<li className="content__list__item" key={index}>
-									<div className="content--wrapper">
-										<label className="content__list__item__label">
-											Name
-										</label>
-										<p className="content__list__item__value">
-											{item.name}
-										</p>
+				<Fragment>
+					<section className="content">
+						<div className="container">
+							<h2 className="content__title">
+								{primaryPage.title}
+							</h2>
+							<ul className="content__list grid-container">
+								{users.map((item, index) => (
+									<li
+										className="content__list__item"
+										key={index}
+									>
+										<div className="content--wrapper">
+											<small className="content__list__item__label">
+												{primaryPage.name}
+											</small>
+											<p className="content__list__item__value">
+												{item.name}
+											</p>
 
-										<label className="content__list__item__label">
-											Email
-										</label>
-										<p className="content__list__item__value">
-											{item.email}
-										</p>
+											<small className="content__list__item__label">
+												{primaryPage.email}
+											</small>
+											<p className="content__list__item__value">
+												{item.email}
+											</p>
 
-										<label className="content__list__item__label">
-											Phone
-										</label>
-										<p className="content__list__item__value">
-											{item.phone}
-										</p>
+											<small className="content__list__item__label">
+												{primaryPage.phone}
+											</small>
+											<p className="content__list__item__value">
+												{item.phone}
+											</p>
 
-										<label className="content__list__item__label">
-											Website
-										</label>
-										<p className="content__list__item__value">
-											{item.website}
-										</p>
-									</div>
+											<small className="content__list__item__label">
+												{primaryPage.website}
+											</small>
+											<p className="content__list__item__value">
+												{item.website}
+											</p>
+										</div>
 
-									<ButtonArrow text="See posts" />
-								</li>
-							))}
-						</ul>
+										<ButtonArrow
+											action={() => {
+												this.showPosts();
+											}}
+											text="See posts"
+										/>
+									</li>
+								))}
+							</ul>
+						</div>
+					</section>
+					<div className={showPosts ? "posts show" : "posts"}>
+						<img
+							alt="Close"
+							className="posts__close"
+							onClick={() => {
+								this.closePosts();
+							}}
+							src={closeIcon}
+						/>
+						<div className="container">
+							<h2 className="posts__title">
+								{secondaryPage.title}
+							</h2>
+							<small className="posts__label">User</small>
+							<p className="posts__user">Nome do usuário</p>
+							<p className="posts__title">Título da mensagem</p>
+							<p className="posts__message">
+								Mensagem do usuário
+							</p>
+						</div>
 					</div>
-				</section>
+				</Fragment>
 			);
 		}
 	}

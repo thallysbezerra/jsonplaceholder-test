@@ -1,3 +1,13 @@
 {
-	"data": "value"
+	"primaryPage": {
+		"title": "Users",
+		"name": "Name",
+		"email": "Email",
+		"phone": "Phone",
+		"website": "Website"
+	},
+	"secondaryPage": {
+		"title": "Posts",
+		"user": "User"
+	}
 }

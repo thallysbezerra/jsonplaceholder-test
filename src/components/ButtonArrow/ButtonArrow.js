@@ -1,14 +1,10 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import "./ButtonArrow.scss";
 
 const ButtonArrow = props => {
 	return (
 		<Fragment>
-			<button
-				className="button-arrow"
-				disabled={props.disabled}
-				onClick={props.action}
-			>
+			<button className="button-arrow" onClick={props.action}>
 				<div className="button-arrow__text">
 					{props.text}
 					<span class="button-arrow__arrow">

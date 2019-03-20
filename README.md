@@ -21,6 +21,7 @@
 -   CSS Grid with repeat notation to define external structure
 -   CSS properties in alphabetical order to prevent duplicity
 -   Font-family `Bitter` imported from Google Fonts CDN
+-   Layout designed with mMobile first, using four breakpoints: mobile (til 767px), portrait tablet (as from 768px), landscape tablet (as from 1024px) and desktop (as from 1280px)
 -   Loading animation with pure CSS
 -   Mobile-first with breakpoints definitions using `@mixin`
 -   SASS/SCSS using `node-sass` as Webpack dependency
