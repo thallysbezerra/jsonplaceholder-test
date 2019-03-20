@@ -2,9 +2,14 @@
 
 .loading {
 	display: inline-block;
-	position: relative;
-	width: 64px;
 	height: 64px;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: scale(1.5) translate(-50%, -50%);
+	width: 48px;
+	width: 64px;
+	z-index: 2;
 
 	div {
 		display: inline-block;

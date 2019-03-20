@@ -23,7 +23,6 @@ export default class Content extends Component {
 				result => {
 					this.setState({
 						isLoaded: true,
-						api: result,
 						users: result
 					});
 				},
@@ -46,10 +45,33 @@ export default class Content extends Component {
 		this.setState({
 			showPosts: true
 		});
+		fetch("https://jsonplaceholder.typicode.com/posts")
+			.then(res => res.json())
+			.then(
+				result => {
+					this.setState({
+						postsIsLoaded: true,
+						posts: result
+					});
+				},
+				error => {
+					this.setState({
+						postsIsLoaded: true,
+						error
+					});
+				}
+			);
 	};
 
 	render() {
-		const { error, isLoaded, showPosts, users } = this.state;
+		const {
+			error,
+			isLoaded,
+			postsIsLoaded,
+			showPosts,
+			users,
+			posts
+		} = this.state;
 		const primaryPage = data.primaryPage;
 		const secondaryPage = data.secondaryPage;
 
@@ -107,7 +129,10 @@ export default class Content extends Component {
 
 										<ButtonArrow
 											action={() => {
-												this.showPosts();
+												this.showPosts(
+													item,
+													primaryPage.id
+												);
 											}}
 											text="See posts"
 										/>
@@ -116,27 +141,52 @@ export default class Content extends Component {
 							</ul>
 						</div>
 					</section>
-					<div className={showPosts ? "posts show" : "posts"}>
-						<img
-							alt="Close"
-							className="posts__close"
-							onClick={() => {
-								this.closePosts();
-							}}
-							src={closeIcon}
-						/>
-						<div className="container">
-							<h2 className="posts__title">
-								{secondaryPage.title}
-							</h2>
-							<small className="posts__label">User</small>
-							<p className="posts__user">Nome do usuário</p>
-							<p className="posts__title">Título da mensagem</p>
-							<p className="posts__message">
-								Mensagem do usuário
-							</p>
-						</div>
-					</div>
+
+					{error ? (
+						<div>Error: {error.message}</div>
+					) : !postsIsLoaded && showPosts === true ? (
+						<section className={showPosts ? "posts show" : "posts"}>
+							<Loading />
+						</section>
+					) : (
+						<section className={showPosts ? "posts show" : "posts"}>
+							<img
+								alt="Close"
+								className="posts__close"
+								onClick={() => {
+									this.closePosts();
+								}}
+								src={closeIcon}
+							/>
+							<div className="container">
+								<h2 className="posts__title">
+									{secondaryPage.title}
+								</h2>
+								<ul className="posts__list">
+									{posts !== undefined &&
+										posts.map((item, index) => (
+											<li
+												className="posts__list__item"
+												key={index}
+											>
+												<small className="posts__list__item__label">
+													{secondaryPage.user}
+												</small>
+												<p className="posts__list__item__user">
+													Nome do usuário
+												</p>
+												<p className="posts__list__item__title">
+													{item.title}
+												</p>
+												<p className="posts__list__item__message">
+													{item.body}
+												</p>
+											</li>
+										))}
+								</ul>
+							</div>
+						</section>
+					)}
 				</Fragment>
 			);
 		}

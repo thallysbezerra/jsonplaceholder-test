@@ -1,14 +1,6 @@
 @import "../../css/Global.scss";
 
 .content {
-	.loading {
-		position: fixed;
-		left: 50%;
-		top: 50%;
-		transform: scale(1.5) translate(-50%, -50%);
-		width: 48px;
-	}
-
 	&__title {
 		color: $red;
 	}
@@ -61,5 +53,10 @@
 		right: 20px;
 		top: 20px;
 		width: 30px;
+	}
+
+	&__list {
+		max-height: calc(100vh - 70px);
+		overflow-y: scroll;
 	}
 }
